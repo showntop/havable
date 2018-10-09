@@ -45,6 +45,7 @@ func NewZooKeeper(servers []string, sessionTimeout time.Duration) (*ZooKeeper, e
 	if err != nil {
 		return nil, err
 	}
+	c.SetLogger(&ALogger{})
 	z.conn = c
 	z.defaultEvent = ev
 	go z.defaultEventCallBack()

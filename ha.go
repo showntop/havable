@@ -31,6 +31,7 @@ func New(option *Option) (*HAManager, error) {
 	var connChan <-chan zk.Event
 	var err error
 	ham.zkConn, connChan, err = zk.Connect(option.ZkHosts, time.Second)
+	ham.zkConn.SetLogger(&ALogger{})
 	if err != nil {
 		return ham, err
 	}
